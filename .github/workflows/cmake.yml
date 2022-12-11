@@ -20,7 +20,21 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install Tools
-      run: sudo apt-get install gawk wget python git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm;git clone git://git.yoctoproject.org/poky -b dunfell;source poky/oe-init-build-env;bitbake core-image-minimal
+    - name: Install 1
+      #run: sudo apt-get install gawk wget python git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm;git clone git://git.yoctoproject.org/poky -b dunfell;source poky/oe-init-build-env;bitbake core-image-minimal
+      run: echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list';sudo apt install curl;
 
+    - name: Install 2
+      run: curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+      
+    - name: Install 3
+      run: curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+    
+    - name: Install 4
+      run: sudo apt update
+    
+    - name: Install 5
+      run: sudo apt install ros-noetic-desktop
+      
+      
       
