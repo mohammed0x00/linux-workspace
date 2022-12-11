@@ -31,7 +31,7 @@ jobs:
       run: sudo apt update
     
     - name: Install 4
-      run: sudo apt install ros-noetic-desktop
+      run: sudo apt install ros-noetic-desktop-full
       
       
       
