@@ -27,7 +27,7 @@ jobs:
       run: git clone https://github.com/buildroot/buildroot.git
     
     - name: Install 3
-      run: cd buildroot-master;make
+      run: cd buildroot;make
       
       
       
