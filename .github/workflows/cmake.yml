@@ -20,14 +20,14 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install 1
+    - name: Install Tools
       run: sudo apt-get install gawk wget python git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm
 
     - name: Git buildroot
       run: git clone https://github.com/buildroot/buildroot.git
     
-    - name: Install 3
-      run: cd buildroot;make
+    - name: Build Image
+      run: cd buildroot;make qemu_riscv32_virt_defconfig; make
       
       
       
