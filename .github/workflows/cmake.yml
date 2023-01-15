@@ -30,13 +30,13 @@ jobs:
       run: cd k210-linux-nommu;export PROJ_ROOT=$(pwd);cd $PROJ_ROOT;sh ./prepare_buildroot.sh;
       
     - name: Build
-      run: cd "$PROJ_ROOT/riscv64-nommu-buildroot";make riscv64_nommu_defconfig;make;
+      run: cd "~/k210-linux-nommu/riscv64-nommu-buildroot";make riscv64_nommu_defconfig;make;
       
     - name: Compress
-      run: cd "$PROJ_ROOT/riscv64-nommu-buildroot";tar -czvf toolchain.tar.gz output/host
+      run: cd "~/k210-linux-nommu/riscv64-nommu-buildroot";tar -czvf toolchain.tar.gz output/host
       
     - uses: actions/upload-artifact@v3
       with:
           name: my-artifact
-          path: toolchain.tar.gz
+          path: ~/k210-linux-nommu/riscv64-nommu-buildroot/toolchain.tar.gz
 
