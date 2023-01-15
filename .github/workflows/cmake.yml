@@ -24,7 +24,7 @@ jobs:
       run: sudo apt-get install gawk wget python git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm
     
     - name: Git buildroot
-      run: cp buildroot_defconfig ~/;cd ~; git clone https://github.com/regymm/buildroot.git;cp ~/buildroot_defconfig ~/buildroot/configs/
+      run: cp buildroot_defconfig ~/;cd ~; git clone git://git.buildroot.net/buildroot;cd buildroot; git am < ../yminpatch.txt;cp ~/buildroot_defconfig ~/buildroot/configs/
 
     - name: Build
       run: cd ~/buildroot;make buildroot_defconfig;make;
