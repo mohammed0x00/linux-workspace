@@ -21,12 +21,12 @@ jobs:
     - uses: actions/checkout@v3
     
     - name: Git buildroot
-      run: cd ~; git clone https://github.com/vowstar/k210-linux-nommu.git
+      run: cd ~; git clone https://github.com/vowstar/k210-linux-nommu.git;rm -rf ~/k210-linux-nommu/riscv64-nommu-buildroot ~/k210-linux-nommu/.git
     
     - name: Compress
-      run: cd ~;tar -czvf buildroot.tar.gz k210-linux-nommu
+      run: cd ~;tar -cf - k210-linux-nommu/ | xz -9 -c - > buildroot.tar.xz  
       
     - uses: actions/upload-artifact@v3
       with:
           name: my-artifact
-          path: ~/buildroot.tar.gz
+          path: ~/buildroot.tar.xz
