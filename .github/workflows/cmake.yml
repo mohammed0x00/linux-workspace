@@ -24,7 +24,7 @@ jobs:
       run: sudo apt-get install gawk wget python git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm
     
     - name: Git buildroot
-      run: cp buildroot_defconfig ~/;cd ~; git clone https://github.com/cnlohr/buildroot --recurse-submodules --depth 1; cp ~/buildroot_defconfig ~/buildroot/configs/
+      run: cp buildroot_defconfig kernel_config busybox_config ~/;cd ~; git clone https://github.com/cnlohr/buildroot --recurse-submodules --depth 1; cp ~/buildroot_defconfig ~/buildroot/configs/;cp ~/kernel_config ~/busybox_config ~/buildroot/;
 
     - name: Build
       run: cd ~/buildroot;make buildroot_defconfig;make;
