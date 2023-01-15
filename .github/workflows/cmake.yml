@@ -24,10 +24,10 @@ jobs:
       run: sudo apt-get install gawk wget python git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm
 
     - name: Git buildroot
-      run: git clone https://github.com/vowstar/k210-linux-nommu.git
+      run: cd ~; git clone https://github.com/vowstar/k210-linux-nommu.git
     
     - name: Configure
-      run: cd k210-linux-nommu;export PROJ_ROOT=$(pwd);cd $PROJ_ROOT;sh ./prepare_buildroot.sh;
+      run: cd ~; cd k210-linux-nommu;export PROJ_ROOT=$(pwd);cd $PROJ_ROOT;sh ./prepare_buildroot.sh;
       
     - name: Build
       run: cd "~/k210-linux-nommu/riscv64-nommu-buildroot";make riscv64_nommu_defconfig;make;
