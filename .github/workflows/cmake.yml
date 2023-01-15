@@ -24,10 +24,19 @@ jobs:
       run: sudo apt-get install gawk wget python git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm
 
     - name: Git buildroot
-      run: git clone https://github.com/buildroot/buildroot.git
+      run: git clone https://github.com/vowstar/k210-linux-nommu.git
     
-    - name: Build Image
-      run: cd buildroot;make qemu_riscv32_virt_defconfig; make
+    - name: Configure
+      run: cd k210-linux-nommu;export PROJ_ROOT=$(pwd);cd $PROJ_ROOT;sh ./prepare_buildroot.sh;
       
+    - name: Build
+      run: cd "$PROJ_ROOT/riscv64-nommu-buildroot";make riscv64_nommu_defconfig;make;
       
+    - name: Compress
+      run: cd "$PROJ_ROOT/riscv64-nommu-buildroot";tar -czvf toolchain.tar.gz output/host
       
+    - uses: actions/upload-artifact@v3
+      with:
+          name: my-artifact
+          path: toolchain.tar.gz
+
